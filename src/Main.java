@@ -12,9 +12,10 @@ public class Main {
 		int folds = 5;
 		boolean width = true;
 		int sectSize = 11;
-		String name = "wine";
+		String name = "iris";
+		int k = 3;
 		
-		DataSource dataSource = new DataSource("c:/Studia/Systemy ucz¹ce sie v2/" + name + "/" + name + "2.data", "c:/Studia/Systemy ucz¹ce sie v2/" + name + "/" + name + ".names");
+		DataSource dataSource = new DataSource("c:/Studia/Systemy ucz¹ce sie v2/" + name + "/" + name + ".data", "c:/Studia/Systemy ucz¹ce sie v2/" + name + "/" + name + ".names");
 		Data data = dataSource.getData();
 		//data.printData();
 		DataSet dataset = new DataSet(data, folds, width, sectSize);
@@ -27,8 +28,7 @@ public class Main {
 		//	train.printUniqArguments();
 			Data test = dataset.getTestData();
 			
-			KNN knn = new KNN();
-		//	ila.trainILA(train);
+			KNN knn = new KNN(k, train);
 			
 			System.out.println("-------TEST-------");
 			ArrayList<String[]> results = knn.testKNN(test);

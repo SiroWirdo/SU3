@@ -24,9 +24,11 @@ public class DataSet {
 		for(int i = 0; i < data.getArguments().get(0).length; i++){
 			uniqArguments.add(new ArrayList<String>());
 		}
-
+		
 		fillIndexes();
 		fillUniqArguments();
+		
+		normalization();
 
 	/*	if(width){
 			equalWidth(sect);
@@ -44,6 +46,7 @@ public class DataSet {
 	
 	private void normalization(){
 		ArrayList<String[]> arguments = (ArrayList<String[]>)data.getArguments().clone();
+		ArrayList<String[]> origArguments = data.getArguments();
 		ArrayList<ArrayList<String>> argumentList = new ArrayList<ArrayList<String>>();
 		
 		for(int i = 0; i < arguments.get(0).length; i++){
@@ -59,6 +62,17 @@ public class DataSet {
 		
 		for(ArrayList<String> argument : argumentList){
 			Collections.sort(argument);
+		}
+		
+		for(String[] arg : arguments){
+			for(int i = 0; i < arg.length; i++){
+				double max = Double.parseDouble(argumentList.get(i).get(argumentList.get(i).size() - 1));
+				double min = Double.parseDouble(argumentList.get(i).get(0));
+				double oldVal = Double.parseDouble(arg[i]);
+				// sprowadzenie do przedzia³u [0;1];
+				double newVal = (oldVal - min)/(max - min);
+				arg[i] = Double.toString(newVal);
+			}
 		}
 	}
 
