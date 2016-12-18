@@ -57,7 +57,7 @@ public class KNN {
 					double addVal = 1;
 
 					if(voting == 1){
-						System.out.println("weight");
+						System.out.println(entry.getKey());
 						addVal = 1.0/entry.getKey();
 					}
 
@@ -80,7 +80,7 @@ public class KNN {
 				results.add(res);
 				
 			}else{
-				System.out.println("Random");
+			//	System.out.println("Random");
 				ArrayList<String> bestClasses = new ArrayList<String>();
 				for(Map.Entry<Double, Integer> entry : nearestNeigh.entrySet()){
 					String classVal = trainData.getClasses().get(entry.getValue());

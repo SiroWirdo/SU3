@@ -12,7 +12,7 @@ public class DataSet {
 	private ArrayList<Integer> normalIndex;
 	private ArrayList<ArrayList<String>> uniqArguments;
 
-	public DataSet(Data data, int folds, boolean width, int sect){
+	public DataSet(Data data, int folds){
 		this.data = data;
 		this.crossvalCounter = 0;
 		this.folds = folds;
@@ -70,10 +70,17 @@ public class DataSet {
 				double min = Double.parseDouble(argumentList.get(i).get(0));
 				double oldVal = Double.parseDouble(arg[i]);
 				// sprowadzenie do przedzia³u [0;1];
-				double newVal = (oldVal - min)/(max - min);
+				double newVal;
+				if(max == min){
+					newVal = 1;
+				}else{
+					newVal = (oldVal - min)/(max - min);
+				}
+				System.out.println(i + ":" + newVal);
 				arg[i] = Double.toString(newVal);
 			}
 		}
+		System.out.println();
 	}
 
 	private void crossvalidation(){
