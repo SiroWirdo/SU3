@@ -28,7 +28,10 @@ public class Main {
 		//	train.printUniqArguments();
 			Data test = dataset.getTestData();
 			
-			KNN knn = new KNN(k, train);
+			/* parametr 3: 1 - gloowanie z waga, 2 - losowe g³osowanie
+			 * parametr 4: 1 - miara euclidesowa, inna wartosc miara manhattan
+			 */
+			KNN knn = new KNN(k, train, 2, 2);
 			
 			System.out.println("-------TEST-------");
 			ArrayList<String[]> results = knn.testKNN(test);
